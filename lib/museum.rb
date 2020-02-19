@@ -49,7 +49,16 @@ class Museum
 
   def draw_lottery_winner(exhibit)
     winner_array = ticket_lottery_contestants(exhibit)
-    winner_array.sample 
+    winner_array.sample
+  end
+
+  def announce_lottery_winner(exhibit)
+    winner = draw_lottery_winner(exhibit)
+    if winner.class == Patron
+      "#{winner.name} has won the #{exhibit.name} exhibit lottery"
+    else
+      "No winners for this lottery"
+    end
   end
 
 end

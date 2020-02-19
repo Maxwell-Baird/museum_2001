@@ -152,7 +152,7 @@ class MuseumTest < Minitest::Test
     dmns.add_exhibit(dead_sea_scrolls)
     dmns.add_exhibit(imax)
     dmns.stubs(:draw_lottery_winner).returns(patron_3)
-    assert_equal 'Johnny has won the Dead Sea Scrolls exhibit lottery', dmns.announce_lottery_winner
+    assert_equal 'Johnny has won the Dead Sea Scrolls exhibit lottery', dmns.announce_lottery_winner(dead_sea_scrolls)
   end
 
 end
