@@ -5,7 +5,7 @@ require './lib/exhibit'
 class ExhibitTest < Minitest::Test
 
   def test_exhibit_exist
-    exhibit = Exhibit.new
+    exhibit = Exhibit.new({name: "Gems and Minerals", cost: 0})
     assert_instance_of Exhibit, exhibit
   end
 
