@@ -47,4 +47,9 @@ class Museum
     contestants[exhibit].find_all {|patron| patron.spending_money < exhibit.cost}
   end
 
+  def draw_lottery_winner(exhibit)
+    winner_array = ticket_lottery_contestants(exhibit)
+    winner_array.sample 
+  end
+
 end

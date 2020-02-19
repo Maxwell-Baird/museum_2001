@@ -113,7 +113,8 @@ class MuseumTest < Minitest::Test
   end
 
   def test_museum_draw_lottery
-    ems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
+    dmns = Museum.new("Denver Museum of Nature and Science")
+    gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
     dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 20})
     imax = Exhibit.new({name: "IMAX",cost: 15})
     patron_1 = Patron.new("Bob", 20)
@@ -150,7 +151,7 @@ class MuseumTest < Minitest::Test
     dmns.add_exhibit(gems_and_minerals)
     dmns.add_exhibit(dead_sea_scrolls)
     dmns.add_exhibit(imax)
-    dmns.stubs(:draw_lottery_winner).return(patron_3)
+    dmns.stubs(:draw_lottery_winner).returns(patron_3)
     assert_equal 'Johnny has won the Dead Sea Scrolls exhibit lottery', dmns.announce_lottery_winner
   end
 
