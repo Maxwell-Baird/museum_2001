@@ -42,4 +42,9 @@ class Museum
     by_exhibit
   end
 
+  def ticket_lottery_contestants(exhibit)
+    contestants = patrons_by_exhibit_interest
+    contestants[exhibit]
+  end
+
 end
