@@ -1,11 +1,12 @@
 require 'pry'
 class Museum
 
-  attr_reader :name, :exhibits, :patrons
+  attr_reader :name, :exhibits, :patrons, :revenue
   def initialize(name)
     @name = name
     @exhibits = []
     @patrons = []
+    @revenue = 0
   end
 
   def add_exhibit(exhibit)
@@ -24,6 +25,22 @@ class Museum
 
   def admit(patron)
     @patrons << patron
+  end
+
+  def patrons_of_exhibits
+    sorted_exhibits = @exhibits.sort_by { |exhibit| exhibit.cost}
+    patrons_by_exhibit = patrons_by_exhibit_interest
+    patrons_of_exhibits_hash = Hash.new([])
+    sorted_exhibits.each do |exhibit|
+      patrons_by_exhibit[exhibit].each do |patron|
+        if patron.spending_money > exhibit.cost
+          patrons_of_exhibits_hash[exhibit] << patron
+          patron.spending_money -= exhibit.cost
+          @revenue += exhibit.cost
+        end
+      end
+    end
+    patrons_of_exhibits_hash
   end
 
   def patrons_by_exhibit_interest
